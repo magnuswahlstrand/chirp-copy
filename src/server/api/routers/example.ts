@@ -9,6 +9,8 @@ const filterUserForClient = (user: User) => {
 export const exampleRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
     // TODO: Why do I get this error?
+    // ESLint: Unsafe call of an `any` typed value.(@typescript-eslint/no-unsafe-call)
+    // ESLint: Unsafe member access .findMany on an `any` value.(@typescript-eslint/no-unsafe-member-access)
     const posts = await ctx.prisma.post.findMany({ take: 100 });
     
     const users = (await clerkClient.users.getUserList({
